@@ -12,7 +12,7 @@ export class CurrentUserInterceptor implements NestInterceptor {
 
   async intercept(context: ExecutionContext, next: CallHandler<any>) {
     const request = context.switchToHttp().getRequest();
-    console.log('[세션] ==>', request.session.userId);
+    console.log('[세션][request.session.userId] ==>', request.session.userId);
     const { userId } = request.session.userId || {};
 
     if (userId) {
