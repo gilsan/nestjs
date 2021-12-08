@@ -12,7 +12,7 @@ export class ReportController {
   ) { }
 
 
-  @Post()
+  @Post('insert')
   @UseGuards(AuthGuard)
   createReport(@Body() body: CreateReportDto) {
     return this.reportService.create(body)
