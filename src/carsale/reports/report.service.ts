@@ -14,6 +14,10 @@ export class ReportService {
     const report = this.repo.create(body);
     return this.repo.save(report);
   }
+  insert(body: CreateReportDto) {
+    // this.repo.createQueryBuilder()
+
+  }
 
 
 

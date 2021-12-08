@@ -2,7 +2,7 @@ import { Body, Controller, Post } from "@nestjs/common";
 import { AuthRepository } from "../repositories/auth.repository";
 
 
-@Controller("/auth")
+@Controller("/auths")
 export class AuthController {
 
   constructor(

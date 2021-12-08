@@ -10,6 +10,7 @@ import { MyCVModule } from './carsale/mycv.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserList } from './carsale/users/user.entity';
 import { Report } from './carsale/reports/report.entity';
+import { TaskManagementModule } from './taskManagement/taskmanagement.module';
 
 
 @Module({
@@ -19,6 +20,7 @@ import { Report } from './carsale/reports/report.entity';
     MongooseModule.forRoot(MONGOOSE_CONNECTION),
     MessagesModule,
     MyCVModule,
+    TaskManagementModule,
     // TypeOrmModule.forRoot({
     //   type: 'mysql',
     //   host: 'localhost',
