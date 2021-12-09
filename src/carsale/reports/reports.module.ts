@@ -6,7 +6,7 @@ import { ReportService } from "./report.service";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Report])
+    // TypeOrmModule.forFeature([Report], 'carSales')
   ],
   providers: [
     ReportService
