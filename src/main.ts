@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { FallbackExceptionFilter } from './courses/controllers/filters/http.filter';
@@ -12,6 +13,7 @@ async function bootstrap() {
   // app.useGlobalFilters(
   //   new FallbackExceptionFilter()
   // )
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen(9000);
 }
 bootstrap();
