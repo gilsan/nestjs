@@ -12,6 +12,7 @@ import { UserList } from './carsale/users/user.entity';
 import { Report } from './carsale/reports/report.entity';
 import { TaskManagementModule } from './taskManagement/taskmanagement.module';
 import { Task } from './taskManagement/tasks/tasks.entity';
+import { User } from './taskManagement/auth/user.entity';
 
 
 @Module({
@@ -29,8 +30,8 @@ import { Task } from './taskManagement/tasks/tasks.entity';
       username: 'wirex',
       password: 'wirex',
       database: 'users',
-      entities: [Task],
-      synchronize: false,
+      entities: [Task, User],
+      synchronize: true,
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',

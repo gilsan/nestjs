@@ -1,13 +1,16 @@
 import {
   Controller, Body, Get, Post, Delete, Query, Param, Patch,
-  NotFoundException
+  NotFoundException,
+  UseGuards
 } from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
 import { CreateTaskDto, GetTasksFilterDto } from "./dtos/tasks.dto";
 import { Task, TaskStatus } from "./model/task.model";
 import { TasksService } from "./tasks.service";
 
 
 @Controller('/tasks')
+@UseGuards(AuthGuard())
 export class TasksController {
 
   constructor(

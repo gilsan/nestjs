@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import { JwtModule } from "@nestjs/jwt";
 import { MongooseModule } from '@nestjs/mongoose';
+import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { AuthController } from "./controllers/auth.controller";
 import { AuthRepository } from "./repositories/auth.repository";
