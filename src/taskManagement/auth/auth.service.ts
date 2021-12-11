@@ -5,10 +5,11 @@ import { AuthCredentialsDto } from "./dtos/auth.dto";
 import { User } from "./user.entity";
 import * as bcrypt from 'bcrypt';
 import { JwtService } from "@nestjs/jwt";
-import { JwtPayload } from "./models/jwt-payload.interface";
+import { JwtPayload, UserList } from "./models/jwt-payload.interface";
 
 @Injectable()
 export class AuthService {
+
 
   constructor(
     @InjectRepository(User) private repo: Repository<User>,
@@ -45,6 +46,10 @@ export class AuthService {
     } else {
       throw new UnauthorizedException();
     }
+  }
+
+  async findAll(): Promise<UserList[]> {
+    return this.repo.find();
   }
 
 }
