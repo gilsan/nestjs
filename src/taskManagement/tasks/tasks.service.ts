@@ -5,6 +5,7 @@ import { CreateTaskDto, GetTasksFilterDto } from "./dtos/tasks.dto";
 import { DeleteResult, Repository } from "typeorm";
 import { Task } from "./tasks.entity";
 import { InjectRepository } from "@nestjs/typeorm";
+import { User } from "../auth/user.entity";
 
 
 @Injectable()
@@ -19,28 +20,31 @@ export class TasksService {
   // async getAllTasks(): Promise<Task[]> {
   //   return this.repo.find();
   // }
-  async getTasks(filteredDto: GetTasksFilterDto): Promise<Task[]> {
+  async getTasks(filteredDto: GetTasksFilterDto, user: User): Promise<Task[]> {
     const { status, search } = filteredDto;
     const query = this.repo.createQueryBuilder('task');
+    query.andWhere({ user });
+
     if (status) {
       query.andWhere('task.status = :status', { status });
     }
 
     if (search) {
       query.andWhere(
-        `task.title LIKE :search OR task.description LIKE :search`, { search: `%${search}%` }
+        `(task.title LIKE :search OR task.description LIKE :search)`, { search: `%${search}%` }
       );
     }
     const tasks = await query.getMany();
     return tasks;
   }
 
-  async createTask(createTaskDto: CreateTaskDto): Promise<Task> {
+  async createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {
     const { title, description } = createTaskDto;
     const task = {
       title,
       description,
-      status: TaskStatus.OPEN
+      status: TaskStatus.OPEN,
+      user
     }
 
     const createTask = await this.repo.create(task);
